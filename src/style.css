@@ -4,6 +4,10 @@ body {
 
 }
 
+.hide {
+    display: none;
+}
+
 .game-area {
     position: relative;
     background-color: lightskyblue;
@@ -23,7 +27,7 @@ body {
     padding: 30px;
 }
 
-.score {
+.game-score {
     background-color: black;
     color: white;
     text-align: center;
