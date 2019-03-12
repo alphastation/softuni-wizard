@@ -87,15 +87,9 @@ function draw(timestamp, state) {
     // Modify fireballs positions
     let fireBalls = document.querySelectorAll('.fire-ball');
 
-    state.attacks.forEach(a => {
-        console.log(a);
-        a.el.style.left = a.x + 'px'
-    });
+    state.attacks.forEach(a => a.el.style.left = a.x + 'px');
 
     fireBalls.forEach(fireBall => {
-        // fireBall.x += game.speed * game.fireBallMultiplier;
-        // fireBall.style.left = fireBall.x + 'px';
-
         if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
             fireBall.parentElement.removeChild(fireBall)
         }
