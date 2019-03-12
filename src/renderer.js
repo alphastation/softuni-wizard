@@ -8,6 +8,8 @@ gameStart.addEventListener('click', onGameStart);
 document.addEventListener('keydown', onKeyDown);
 document.addEventListener('keyup', onKeyUp);
 
+let state = initialState();
+
 function onGameStart() {
     gameStart.classList.add('hide');
 
@@ -24,7 +26,8 @@ function onGameStart() {
 
 const frame = t1 => t2 => {
     if (t2 - t1 > game.frameLength) {
-        draw(t2);
+        state = next(state);
+        draw(t2, state);
         state.scene.isActiveGame && window.requestAnimationFrame(frame(t2));
     }
     else {
@@ -32,7 +35,7 @@ const frame = t1 => t2 => {
     }
 }
 
-function draw(timestamp) {
+function draw(timestamp, state) {
     const wizard = document.querySelector('.wizard');
 
     state.scene.score++;
