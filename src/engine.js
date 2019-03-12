@@ -1,14 +1,6 @@
 
 let keys = {};
 
-let player = {
-    x: 150,
-    y: 100,
-    width: 0,
-    height: 0,
-    lastTimeFiredFireball: 0
-};
-
 let scene = {
     isActiveGame: true,
     score: 0,
@@ -16,6 +8,15 @@ let scene = {
     lastBugSpawn: 0
 };
 
+let state = {
+    player: {
+        x: 150,
+        y: 100,
+        width: 0,
+        height: 0,
+        lastTimeFiredFireball: 0
+    }
+};
 
 function isCollision(firstElement, secondElement) {
     let firstRect = firstElement.getBoundingClientRect();
