@@ -8,7 +8,9 @@ gameStart.addEventListener('click', onGameStart);
 document.addEventListener('keydown', onKeyDown);
 document.addEventListener('keyup', onKeyUp);
 
-let state = initialState();
+let state = initialState({
+    areaWidth: gameArea.offsetWidth
+});
 
 function onGameStart() {
     gameStart.classList.add('hide');
@@ -89,12 +91,6 @@ function draw(timestamp, state) {
 
     state.attacks.forEach(a => a.el.style.left = a.x + 'px');
 
-    fireBalls.forEach(fireBall => {
-        if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
-            fireBall.parentElement.removeChild(fireBall)
-        }
-    });
-
     // Apply gravitation
     let isInAir = (state.player.y + state.player.height) <= gameArea.offsetHeight
     if (isInAir) {
@@ -134,11 +130,10 @@ function draw(timestamp, state) {
             if (isCollision(fireBall, bug)) {
                 state.scene.score += game.bugKillBonus
                 bug.parentElement.removeChild(bug);
-                fireBall.parentElement.removeChild(fireBall);
+                // fireBall.parentElement.removeChild(fireBall);
             }
         })
     });
-
     
     // Apply movement
     wizard.style.top = state.player.y + 'px';
